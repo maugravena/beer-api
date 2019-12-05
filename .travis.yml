@@ -1,20 +1,15 @@
-language: ruby
+language: generic
+sudo: required
 
-rvm:
-  - 2.6.5
-
-env:
-  global:
-    - RAILS_ENV=test
-
-before_install:
-  - gem install bundler
+services:
+  - docker
 
 before_script:
-  - gem install bundle-audit
+  - sudo /etc/init.d/postgresql stop
+  - docker-compose build
+  - docker-compose run api bundle exec rails db:test:prepare
 
 script:
-  - RAILS_ENV=test bundle exec rake db:test:prepare
+  - docker-compose run api bundle exec rspec
+  - docker-compose run api bundle exec rubocop --config .rubocop.yml
   - bundle exec rspec
-  - bundle exec rubocop --config .rubocop.yml
-  - bundle-audit check --update
