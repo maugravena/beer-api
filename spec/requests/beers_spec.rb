@@ -43,4 +43,32 @@ describe 'Beers API' do
       end
     end
   end
+
+  describe 'POST /beers' do
+    let(:valid_attributes) { { style: 'Ipa', min_temperature: -7, max_temperature: 10 } }
+
+    context 'request is valid' do
+      before { post api_v1_beers_path, params: valid_attributes }
+
+      it 'creates a beer' do
+        expect(json['style']).to eq('Ipa')
+      end
+
+      it 'returns status code 201' do
+        expect(response).to have_http_status(201)
+      end
+    end
+
+    context 'and request must have all attributes' do
+      before { post api_v1_beers_path, params: { style: 'Ipa' } }
+
+      it 'returns status code 422' do
+        expect(response).to have_http_status(422)
+      end
+
+      it 'returns a validation failure message' do
+        expect(response.body).to include('Validation failed')
+      end
+    end
+  end
 end
