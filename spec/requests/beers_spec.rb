@@ -59,7 +59,7 @@ describe 'Beers API' do
       end
     end
 
-    context 'and request must have all attributes' do
+    context 'request must have all attributes' do
       before { post api_v1_beers_path, params: { style: 'Ipa' } }
 
       it 'returns status code 422' do
@@ -68,6 +68,22 @@ describe 'Beers API' do
 
       it 'returns a validation failure message' do
         expect(response.body).to include('Validation failed')
+      end
+    end
+  end
+
+  describe 'PUT /beers/:id' do
+    let(:valid_attributes) { { style: 'Pilsen' } }
+
+    context 'when the beer exists' do
+      before { put api_v1_beer_path(beer_id), params: valid_attributes }
+
+      it 'updates the beer' do
+        expect(response.body).to be_empty
+      end
+
+      it 'returns status code 204' do
+        expect(response).to have_http_status(204)
       end
     end
   end
