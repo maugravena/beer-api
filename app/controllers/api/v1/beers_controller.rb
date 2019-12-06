@@ -1,7 +1,7 @@
 module Api
   module V1
     class BeersController < ApiController
-      before_action :set_beer, only: [:show, :update]
+      before_action :set_beer, only: [:show, :update, :destroy]
 
       def index
         @beers = Beer.all
@@ -18,7 +18,12 @@ module Api
       end
 
       def update
-        @beer = Beer.update(beer_params)
+        @beer.update(beer_params)
+        head :no_content
+      end
+
+      def destroy
+        @beer.destroy
         head :no_content
       end
 
