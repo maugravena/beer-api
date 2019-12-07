@@ -21,4 +21,11 @@ describe Beer do
     expect(beer.min_temperature).to eq(-7)
     expect(beer.max_temperature).to eq(10)
   end
+
+  it 'returns style given temperature' do
+    beer = Beer.new
+    style = beer.style_by_temperature(-2)
+
+    expect(style).to match(/Dunkel/)
+  end
 end

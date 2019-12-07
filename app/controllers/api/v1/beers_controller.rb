@@ -27,6 +27,10 @@ module Api
         head :no_content
       end
 
+      def suggestion
+        json_response({style: ''})
+      end
+
       private
         def set_beer
           @beer = Beer.find(params[:id])
