@@ -28,7 +28,11 @@ module Api
       end
 
       def suggestion
-        json_response({style: ''})
+        if !params[:temperature]
+          return
+        end
+        @style = Beer.style_by_temperature(params[:temperature])
+        json_response({ style: @style })
       end
 
       private
@@ -37,7 +41,7 @@ module Api
         end
 
         def beer_params
-          params.permit(:style, :min_temperature, :max_temperature)
+          params.permit(:style, :min_temperature, :max_temperature, :temperature)
         end
     end
   end

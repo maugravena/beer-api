@@ -23,9 +23,10 @@ describe Beer do
   end
 
   it 'returns style given temperature' do
-    beer = Beer.new
-    style = beer.style_by_temperature(-2)
+    beer = create(:beer)
+    temp = (beer.min_temperature + beer.max_temperature) / 2
+    style = Beer.style_by_temperature(temp)
 
-    expect(style).to match(/Dunkel/)
+    expect(style).to include(beer.style)
   end
 end
