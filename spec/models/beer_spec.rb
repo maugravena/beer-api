@@ -21,4 +21,12 @@ describe Beer do
     expect(beer.min_temperature).to eq(-7)
     expect(beer.max_temperature).to eq(10)
   end
+
+  it 'returns style given temperature' do
+    beer = create(:beer)
+    temp = (beer.min_temperature + beer.max_temperature) / 2
+    style = Beer.style_by_temperature(temp)
+
+    expect(style).to include(beer.style)
+  end
 end
