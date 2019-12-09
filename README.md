@@ -1,26 +1,33 @@
 [![Build Status](https://travis-ci.com/maugravena/beer-api.svg?branch=master)](https://travis-ci.com/maugravena/beer-api)
 
-# README
+# Beer API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Para rodar a aplicação localmente é necessário ter instalado na sua máquina, docker(https://docs.docker.com/install/) e docker compose(https://docs.docker.com/compose/install/)
 
-Things you may want to cover:
+## Comandos para levantar a aplicação
 
-* Ruby version
+* sudo docker-compose run --rm api bin/setup
+* sudo docker-compose up
+* rodando em localhost:3000
 
-* System dependencies
+OBS: Optar preferencialmente por sistemas Unix(Linux)
 
-* Configuration
+## Deploy no Heroku
 
-* Database creation
+### Endpoints
 
-* Database initialization
+URL base: https://stormy-cove-14668.herokuapp.com/
 
-* How to run the test suite
+* GET /api/v1/beers
+* POST /api/v1/beers
+* PUT /api/v1/beers:id
+* DELETE /beers/:id
 
-* Services (job queues, cache servers, search engines, etc.)
+* GET /api/v1/beer-suggestion?temperature=2
 
-* Deployment instructions
+## Front-end Vue App
 
-* ...
+O front-end se encontra em:
+
+* Código: https://github.com/maugravena/beer-machine 
+* GitHub Pages: https://maugravena.github.io/beer-machine/
