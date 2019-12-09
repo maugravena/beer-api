@@ -12,6 +12,11 @@ Para rodar a aplicação localmente é necessário ter instalado na sua máquina
 
 OBS: Optar preferencialmente por sistemas Unix(Linux)
 
+## Testes
+
+* Rspec: sudo docker-compose run --rm api rspec 
+* Rubocop: sudo docker-compose run --rm api rubocop
+
 ## Deploy no Heroku
 
 ### Endpoints
